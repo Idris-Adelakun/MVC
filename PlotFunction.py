@@ -1,24 +1,25 @@
 import numpy as np
+import sympy as sp
 import matplotlib.pyplot as plt
 
 
-def plot_function():
+def plot_function(equation):
     ''' This function is to be used to create a standardised plotting tool for all practice examples
     '''
 
-    equation = input("Enter Function (f(x, y)):  \n")    
+    x, y = sp.symbols("x y")
+    numerical_functions = sp.lambdify(
+        (x,y),
+        equation,
+        "numpy"
+    )
     
     # linspace, create x and y ranges
-    x = np.linspace(-100, 100, 1000)
-    y = np.linspace(-100, 100, 1000)
+    x = np.linspace(-10, 10, 100)
+    y = np.linspace(-10, 10, 100)
 
-    # meshgrid
     X, Y = np.meshgrid(x, y)
-
-    try: 
-        Z = eval (equation, {"np": np, "x": X, "y": Y})
-    except Exception as error:
-        print(f"Invalid equation: {error}")
+    Z = numerical_functions(X, Y)
 
     # Plotting and stylistic choices
     
@@ -32,7 +33,6 @@ def plot_function():
     ax.set_ylabel('Y')
     ax.set_zlabel('Z')
 
-    plt.title(f'3D surface plot of:{equation}')
+    plt.title(f'3D surface plot of: {equation}')
+
     plt.show()
-
-
