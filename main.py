@@ -1,22 +1,26 @@
 from Input import get_equation
 from PlotFunction import plot_function
-from CalculusTools import second_derivative, classify_point
+from CalculusTools import second_derivative
+
 
 
 def main():
 
-    equation = get_equation
+    equation = get_equation()
     if equation is None:
         return
 
-    print("Your function is:\n{equation}")
+    print(f"Your function is:\n{equation}")
+    print(type(equation))
 
     fxx, fyy, fxy = second_derivative(equation)
 
-    plot_function(equation)
     print("fxx =", fxx)
     print("fyy =", fyy)
     print("fxy =", fxy)
+
+    plot_function(equation)
+    
 
 
 if __name__ == "__main__":

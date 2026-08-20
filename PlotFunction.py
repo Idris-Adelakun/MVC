@@ -3,6 +3,7 @@ import sympy as sp
 import matplotlib.pyplot as plt
 
 
+
 def plot_function(equation):
     ''' This function is to be used to create a standardised plotting tool for all practice examples
     '''
@@ -36,3 +37,4 @@ def plot_function(equation):
     plt.title(f'3D surface plot of: {equation}')
 
     plt.show()
+  

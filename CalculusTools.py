@@ -8,11 +8,11 @@ def second_derivative(equation):
     '''
     x, y = sp.symbols ("x y")
 
-    fxy = sp.diff(equation, x, y)
     fxx = sp.diff(equation, x, 2)
     fyy = sp.diff(equation, y, 2)
+    fxy = sp.diff(equation, x, y)
 
-    return fxy, fxx, fyy
+    return fxx, fyy, fxy
 
 
 def classify_point(A, B, C):
