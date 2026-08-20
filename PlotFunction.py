@@ -34,7 +34,9 @@ def plot_function(equation):
     ax.set_ylabel('Y')
     ax.set_zlabel('Z')
 
-    plt.title(f'3D surface plot of: {equation}')
+    plt.title(
+        rf'3D surface plot of $f(x,y): {sp.latex(equation)}$'
+        )
 
     plt.show()
   

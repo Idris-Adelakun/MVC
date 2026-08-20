@@ -1,23 +1,36 @@
-from Input import get_equation
+import CalculusTools as CT
+import sympy as sp
 from PlotFunction import plot_function
-from CalculusTools import second_derivative
+
+EQUATION = "(x-2)**2 +x*y -y**2" # Set equation here
 
 
 
 def main():
 
-    equation = get_equation()
-    if equation is None:
-        return
+
+    try:
+        # equation = input("Enter MV equation f(x,y): \n") Uncomment when getting user input
+        equation = sp.sympify(EQUATION)
+    except Exception as error:
+        print("Invalid equation: ", error)
 
     print(f"Your function is:\n{equation}")
-    print(type(equation))
+    # print(type(equation)) [DEBUG]
 
-    fxx, fyy, fxy = second_derivative(equation)
+    fx, fy = CT.first_derivative(equation)
+    fxx, fyy, fxy = CT.second_derivative(equation)
 
+    print("fx =", fx)
+    print("fy =", fy)
     print("fxx =", fxx)
     print("fyy =", fyy)
     print("fxy =", fxy)
+
+    critical_point = CT.find_critical_points(fx, fy)
+    print("Critical point is: ", critical_point)
+
+
 
     plot_function(equation)
     
