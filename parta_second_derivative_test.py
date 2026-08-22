@@ -1,13 +1,8 @@
-import CalculusTools as CT
-import sympy as sp
-from PlotFunction import plot_function
-
 EQUATION = "12*x**2+y**3-12*x*y" # Set equation here
 
 
 
-def main():
-
+def second_deriv_test():
     # Second derivative test
     try:
         # equation = input("Enter MV equation f(x,y): \n") Uncomment when getting user input
@@ -33,8 +28,3 @@ def main():
     print("Classification: ", CT.classify_point(equation, critical_points))
 
     plot_function(equation)
-    
-
-
-if __name__ == "__main__":
-    main()
