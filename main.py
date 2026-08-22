@@ -2,7 +2,7 @@ import CalculusTools as CT
 import sympy as sp
 from PlotFunction import plot_function
 
-EQUATION = "(x-2)**2 +x*y -y**2" # Set equation here
+EQUATION = "12*x**2+y**3-12*x*y" # Set equation here
 
 
 
@@ -28,9 +28,9 @@ def main():
     print("fxy =", fxy)
 
     # Finding critical point and classifying it
-    critical_point = CT.find_critical_points(fx, fy)
-    print("Critical point is: ", critical_point)
-    print("Classification: ", CT.classify_point(equation, critical_point))
+    critical_points = CT.find_critical_points(fx, fy)
+    print("Critical points: ", critical_points)
+    print("Classification: ", CT.classify_point(equation, critical_points))
 
     plot_function(equation)
     

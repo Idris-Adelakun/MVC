@@ -33,26 +33,31 @@ def find_critical_points(fx, fy):
     ) 
 
 
-def classify_point(equation, critical_point):
+def classify_point(equation, critical_points):
 
     fxx, fyy, fxy = second_derivative(equation)
+    classification = []
 
-    A = fxx.subs(critical_point)
-    B = fxy.subs(critical_point)
-    C = fyy.subs(critical_point)
+    for point in critical_points: 
 
-    D = A*C - B**2
+        A = fxx.subs(point)
+        B = fxy.subs(point)
+        C = fyy.subs(point)
+        D = A*C - B**2
 
-    if D>0 and A > 0:
-        return "Minimum"
 
-    elif D>0 and A < 0:
-        return "Maximum"
+        if D>0 and A > 0:
+            classification.append("Minimum")
 
-    elif D<0:
-        return "Saddle point"
-    else:
-        return "Inconclusive"
+        elif D>0 and A < 0:
+            classification.append("Maximum")
+
+        elif D<0:
+            classification.append("Saddle Point")
+        else:
+            classification.append("Inconclusive")
+
+    return classification
 
 
 
