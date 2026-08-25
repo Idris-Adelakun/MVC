@@ -63,8 +63,26 @@ def classify_point(equation, critical_points):
 
 # Lesson 2: Chain Rule and Total Differentials
 
-    def chain_rule(equation):
-        t, w, x, y, z = sp.symbols("t w x y z")
+def chain_rule(equation, xeq, yeq, zeq):
+    t, x, y, z = sp.symbols("t x y z")
+    # later can make take on any variable, for now hardcoded
+
+    w_x = sp.diff(equation, x)
+    w_y = sp.diff(equation, y)
+    w_z = sp.diff(equation, z)
+
+    dx = sp.diff(xeq, t)
+    dy = sp.diff(yeq, t)
+    dz = sp.diff(zeq, t)
+
+    eq_sub_x = w_x.subs(x, xeq)
+    eq_sub_y = w_y.subs(y, yeq)
+    eq_sub_z = w_z.subs(z, zeq)
+
+    chain_eq = (eq_sub_x * dx) + (eq_sub_y * dy) + (eq_sub_z * dz)
+
+
+
 
     
 
