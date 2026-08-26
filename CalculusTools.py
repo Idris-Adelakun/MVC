@@ -61,4 +61,48 @@ def classify_point(equation, critical_points):
 
 
 
+# Lesson 2: Chain Rule and Total Differentials
+
+def chain_rule(equation, xeq, yeq, zeq):
+    t, x, y, z = sp.symbols("t x y z")
+    # later can make take on any variable, for now hardcoded
+
+    xeq = sp.sympify(xeq)
+    yeq = sp.sympify(yeq)
+    zeq = sp.sympify(zeq)
+
+    w_x = sp.diff(equation, x)
+    w_y = sp.diff(equation, y)
+    w_z = sp.diff(equation, z)
+
+    dx = sp.diff(xeq, t)
+    dy = sp.diff(yeq, t)
+    dz = sp.diff(zeq, t)
+
+    # return f"w_x: {w_x}\nw_y: {w_y}\nw_z: {w_z}\ndx: {dx}\ndy: {dy}\ndz: {dz}\n" [DEBUG] 
+
+    sub_map = {
+        x: xeq,
+        y: yeq,
+        z: zeq,
+    }
+    partials = [w_x, w_y, w_z]
+    derivs = [dx, dy, dz]
+    eq_sub = [partial.subs(sub_map) for partial in partials] 
+
+    sub_array    = sp.Matrix(eq_sub)
+    derivs_array = sp.Matrix(derivs)
+
+    computation = sub_array.dot(derivs_array)
+
+    
+
+    return computation, f"dw/dt = {computation}"
+
+
+
+
+
+    
+
 
