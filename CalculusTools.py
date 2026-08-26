@@ -67,6 +67,10 @@ def chain_rule(equation, xeq, yeq, zeq):
     t, x, y, z = sp.symbols("t x y z")
     # later can make take on any variable, for now hardcoded
 
+    xeq = sp.sympify(xeq)
+    yeq = sp.sympify(yeq)
+    zeq = sp.sympify(zeq)
+
     w_x = sp.diff(equation, x)
     w_y = sp.diff(equation, y)
     w_z = sp.diff(equation, z)
@@ -75,11 +79,26 @@ def chain_rule(equation, xeq, yeq, zeq):
     dy = sp.diff(yeq, t)
     dz = sp.diff(zeq, t)
 
-    eq_sub_x = w_x.subs(x, xeq)
-    eq_sub_y = w_y.subs(y, yeq)
-    eq_sub_z = w_z.subs(z, zeq)
+    # return f"w_x: {w_x}\nw_y: {w_y}\nw_z: {w_z}\ndx: {dx}\ndy: {dy}\ndz: {dz}\n" [DEBUG] 
 
-    chain_eq = (eq_sub_x * dx) + (eq_sub_y * dy) + (eq_sub_z * dz)
+    sub_map = {
+        x: xeq,
+        y: yeq,
+        z: zeq,
+    }
+    partials = [w_x, w_y, w_z]
+    derivs = [dx, dy, dz]
+    eq_sub = [partial.subs(sub_map) for partial in partials] 
+
+    sub_array    = sp.Matrix(eq_sub)
+    derivs_array = sp.Matrix(derivs)
+
+    computation = sub_array.dot(derivs_array)
+
+    
+
+    return computation, f"dw/dt = {computation}"
+
 
 
 

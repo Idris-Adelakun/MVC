@@ -8,6 +8,8 @@ def plot_function(equation):
     ''' This function is to be used to create a standardised plotting tool for all practice examples
     '''
 
+    #TODO as this will be an all in one calculator, you need to strip equation inputs and only take 2 inputs as we can only plot in 3d for simplicity
+
     x, y = sp.symbols("x y")
     numerical_functions = sp.lambdify(
         (x,y),
