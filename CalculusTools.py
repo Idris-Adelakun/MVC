@@ -95,11 +95,35 @@ def chain_rule(equation, xeq, yeq, zeq):
 
     computation = sub_array.dot(derivs_array)
 
-    
 
     return computation, f"dw/dt = {computation}"
 
 
+def total_differential(equation, eval_values): # values will currently need to be stored as list or tuple in order x,y,z (not dynamic)
+
+    x, y, z = sp.symbols("x y z")
+
+    w_x = sp.diff(equation, x)
+    w_y = sp.diff(equation, y)
+    w_z = sp.diff(equation, z)
+
+    dx = sp.diff(equation, x)
+    dy = sp.diff(equation, y)
+    dz = sp.diff(equation, z)
+
+    value_map = {
+        x:eval_values[0],
+        y:eval_values[1],
+        z:eval_values[2]
+    }
+
+    partials = [w_x, w_y, w_z]
+
+    eq_sub = [partial.subs(value_map) for partial in partials]
+
+    total_differential = eq_sub[0]*dx + eq_sub[1]*dy + eq_sub[2]*dz
+
+    return total_differential
 
 
 
