@@ -28,17 +28,20 @@ def main():
     # print("fxy =", fxy)
 
     # Finding critical point and classifying it
-    critical_points = CT.find_critical_points(fx, fy)
-    print("Critical points: ", critical_points)
-    print("Classification: ", CT.classify_point(equation, critical_points))
+    # critical_points = CT.find_critical_points(fx, fy)
+    # print("Critical points: ", critical_points)
+    # print("Classification: ", CT.classify_point(equation, critical_points))
 
-    # plot_function(equation)
+    # # plot_function(equation)
 
-    test = CT.chain_rule(equation, xeq='t', yeq='t**2', zeq="3*t")   #Testing  
-    t_val = float(input("Enter a value for t to evaluate:\n"))
-    t = sp.symbols('t')
-    result = test[0].subs(t, t_val)
-    print(result)
+    # test_chain = CT.chain_rule(equation, xeq='t', yeq='t**2', zeq="3*t")   #Testing  
+    # t_val = float(input("Enter a value for t to evaluate:\n"))
+    # t = sp.symbols('t')
+    # result = test_chain[0].subs(t, t_val)
+    # print(result)
+
+    test_total = CT.total_derivatives(equation, [1, 2, 3])
+    print(test_total)
 
 
 if __name__ == "__main__":
