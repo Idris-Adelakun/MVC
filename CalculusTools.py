@@ -126,6 +126,50 @@ def total_differential(equation, eval_values): # values will currently need to b
     return total_differential
 
 
+def analyse_level_curve(equation, point):
+    '''
+    Maps gradient/tangent relationship for level curves
+    '''
+    x, y,= sp.symbols("x y")
+
+    points = [p.strip() for p in point.split(',')]
+    x_point = sp.sympify(points[0])
+    y_point = sp.sympify(points[1])
+
+    print(f"x point:{x_point}\ny point:{y_point}")
+
+    equation = sp.sympify(equation)
+
+    contour_level = equation.subs({
+        x:x_point, 
+        y:y_point
+        })
+
+    fx, fy = first_derivative(equation)
+
+    gradient = sp.Matrix([fx, fy])
+    gradient_at_point = gradient.subs(
+        {
+            x:x_point,
+            y:y_point
+        }
+    )
+
+    tangent_vector = (-gradient_at_point[1],gradient_at_point[0])
+
+    return contour_level, gradient_at_point, tangent_vector
+
+
+
+    
+
+
+
+
+
+        
+
+
 
     
 
