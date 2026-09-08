@@ -7,13 +7,13 @@ Say we have computed the gradient vector as:
 
 
 $$
-\nabla w = \langle a,\;b\rangle
+\nabla w = \langle a,b\rangle
 $$
 
 Then, the tangent vector can be written as:
 
 $$
-\langle -b,\;a\rangle
+\langle -b,a\rangle
 $$
 
 The tangent vector has a slope equal to the negative reciprocal of the gradient's slope. But why is this the case? Here is a proof
@@ -28,7 +28,7 @@ $$
 Now imagine we are moving along one of its level curves. We can describe our position using:
 
 $$
-x=x(t), \; y=y(t)
+x=x(t), y=y(t)
 $$
 
 Since we are moving along a level curve, the value of $w$ stays constant:
