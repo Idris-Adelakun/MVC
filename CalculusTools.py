@@ -160,7 +160,43 @@ def analyse_level_curve(equation, point):
     return contour_level, gradient_at_point, tangent_vector
 
 
+def lagrange_candidates(equation, constraint, constant):
+    """Return real Lagrange candidates and their objective values; see above."""
+    lam = sp.Symbol("lam")  # lambda is python reserved keyword
 
+    # TODO 1: Calculate the two partial derivatives of f and the two of g.
+    fx, fy = first_derivative(equation) # from CT
+    gx, gy = first_derivative(constraint)
+
+    # TODO 2: Build the three Lagrange equations, including the constraint.
+    fx_1 = lam * gx
+    fy_1 = lam * gy
+    g = constant
+
+    # TODO 3: Solve simultaneously for x, y and lam.
+    # Your existing find_critical_points() shows the sp.solve pattern.
+
+    solutions = sp.solve(
+        [fx, fy], [x, y],
+        dict=True
+    )
+
+    # TODO 4: Keep real solutions, evaluate f at each point, and return
+    # the list of dictionaries described above.
+
+    evaluation = [equation.sub(solution) for solution in solutions]
+
+    return evaluation
+
+
+if __name__ == "__main__":
+    try:
+        candidates = lagrange_candidates(x*y, x**2 + y**2, 1)
+    except NotImplementedError as error:
+        print(error)
+    else:
+        for candidate in candidates:
+            print(candidate)
     
 
 
